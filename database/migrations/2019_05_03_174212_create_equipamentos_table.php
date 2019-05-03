@@ -16,10 +16,10 @@ class CreateEquipamentosTable extends Migration
         Schema::create('equipamentos', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
-            $table->Interge('tipo')->unsigned();
+            $table->Interge('equip_tipo')->unsigned();
             $table->timestamps();
 
-            $table->foreign('tipo')->references('id')->on('tipos');
+            $table->foreign('equip_tipo')->references('id')->on('tipos');
         });
     }
 
