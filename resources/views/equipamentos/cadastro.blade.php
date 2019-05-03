@@ -1,58 +1,28 @@
-<!-- create.blade.php -->
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Laravel 5.6 CRUD Tutorial With Example  </title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">  
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">  
-    <script  data-src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>  
-  </head>
-  <body>
-    <div class="container">
-      <h2>Passport Appointment System</h2><br/>
-      <form method="post" action="{{route('equipamento.store')}}" enctype="multipart/form-data">
-        @csrf
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" name="name">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4">
-            <strong>Date : </strong>  
-            <input class="date form-control"  type="text" id="datepicker" name="date">   
-         </div>
-        </div>
-         <div class="row">
-          <div class="col-md-4"></div>
-            <div class="form-group col-md-4">
-                <lable>Tipo</lable>
-                <select name="tipo">
-                  <option value=""></option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4" style="margin-top:60px">
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </div>
-      </form>
+@section('content')
+<h3>Cadastro de Equipamentos</h3>
+
+<div class="row" style="margin-top: 50px;">
+  <form action="{{route('equipamento.salvar')}}" method="post" class="col s12">
+  @csrf
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="nome" name="name" type="text" class="validate">
+        <label for="nome">Nome</label>
+      </div>
+    </div>  
+    <div class="row">
+      <!-- <label>Materialize Select</label> -->
+        <select name="equip_tipo" class="col s12">
+          <option value = "" disabled selected>Selecione o tipo</option>
+          @foreach($tipos as $tipo)
+            <option value="{{ $tipo->id }}">{{ $tipo->name }}</option>
+          @endforeach  
+        </select>               
     </div>
-    <script type="text/javascript">  
-        $('#datepicker').datepicker({ 
-            autoclose: true,   
-            format: 'dd-mm-yyyy'  
-         });  
-    </script>
-  </body>
-</html>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
+  </form>
+</div>      
+
+  @endsection

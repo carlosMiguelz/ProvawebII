@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Equipamento;
+use App\Tipo;
 
 class EquipamentoController extends Controller
 {   
@@ -19,8 +20,9 @@ class EquipamentoController extends Controller
     public function index()
     {
         $equipamentos = Equipamento::all();
+        $tipos = Tipo::all();
 
-        return view('equipamentos.index',compact('equipamentos'));
+        return view('equipamentos.index',compact('equipamentos','tipos'));
     }
 
     /**
@@ -30,7 +32,8 @@ class EquipamentoController extends Controller
      */
     public function create()
     {
-        return view('equipamentos.cadastro');
+        $tipos = Tipo::all();
+        return view('equipamentos.cadastro', compact('tipos'));
     }
 
     /**
@@ -43,7 +46,7 @@ class EquipamentoController extends Controller
     {
         $equipamento = $request ->all();
         Equipamento::create($equipamento);
-        return redirect()->route('equipamentos.index');
+        return redirect()->route('equipamento.index');
     }
 
     /**

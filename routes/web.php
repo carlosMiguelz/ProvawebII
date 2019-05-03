@@ -12,10 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('equipamento','EquipamentoController');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/', ['as' => 'equipamento.index', 'uses' => 'EquipamentoController@index']);
+Route::get('/equipamento/adicionar', ['as' => 'equipamento.adicionar', 'uses' => 'EquipamentoController@create']);
+Route::post('/equipamento/salvar', ['as' => 'equipamento.salvar', 'uses' => 'EquipamentoController@store']);
