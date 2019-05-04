@@ -19,7 +19,9 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-
+//EQUIPAMENTOS
 Route::get('/', ['as' => 'equipamento.index', 'uses' => 'EquipamentoController@index']);
+Route::get('/equipamento/deletar/{id}', ['as' => 'equipamento.deletar', 'uses' => 'EquipamentoController@destroy']);
 Route::get('/equipamento/adicionar', ['as' => 'equipamento.adicionar', 'uses' => 'EquipamentoController@create']);
 Route::post('/equipamento/salvar', ['as' => 'equipamento.salvar', 'uses' => 'EquipamentoController@store']);
+

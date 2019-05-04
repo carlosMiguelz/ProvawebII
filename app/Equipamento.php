@@ -11,6 +11,10 @@ class Equipamento extends Model
     protected $fillable = ['name','equip_tipo'];
 
     public function equip_tipo(){
-      return $this->hasMany(Tipo::class);
- 		}
+        return $this->belongsToMany(Tipo::class);
+ 	}
+
+    public function reservas(){
+        return $this->hasMany(Reserva::class);
+    }
 }

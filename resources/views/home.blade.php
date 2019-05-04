@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    
+
+    @if (session('status'))
+      <div class="alert alert-success">
+          {{ session('status') }}
+      </div>
+    @endif
     <div>
         <h3>Equipamentos Cadastrados</h3>
     </div>

@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Tipo;
 
-class TiposTableSeeder extends Seeder
+class TipoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,14 +11,14 @@ class TiposTableSeeder extends Seeder
      */
     public function run()
     {
-       	DB::table('tipos')->insert([
-        'name' => 'projetor',
+        DB::table('tipos')->insert([
+        'name' => 'projetor'
         ]);      
          DB::table('tipos')->insert([
-        'name' => 'caixa de som',
+        'name' => 'caixa de som'
         ]);      
          DB::table('tipos')->insert([
-        'name' => 'microfone',
+        'name' => 'microfone'
         ]);
     }
 }

@@ -49,16 +49,6 @@ class EquipamentoController extends Controller
         return redirect()->route('equipamento.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -93,6 +83,6 @@ class EquipamentoController extends Controller
     {
         $equipamento = Equipamento::find($id);
         $equipamento->delete();
-        return redirect('equipamentos.index');
+        return redirect()->route('equipamento.index');
     }
 }

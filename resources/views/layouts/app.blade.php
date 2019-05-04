@@ -26,9 +26,20 @@
             <div class="nav-wrapper container">
               <a href="{{route('equipamento.index')}}" class="brand-logo">SGRE</a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Sass</a></li>
-                <li><a href="#">Components</a></li>
-                <li><a href="#">JavaScript</a></li>
+                @guest
+                @else
+                <li>
+                  <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    Sair
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                  </form>
+                </li>
+                @endguest
               </ul>
             </div>
           </nav>

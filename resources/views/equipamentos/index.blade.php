@@ -5,25 +5,34 @@
         <h3>Equipamentos Cadastrados</h3>
     </div>
     <div>
-        <table>
+        <table class="striped">
         <thead>
           <tr>
               <th>Nome</th>
               <th>Tipo</th>              
+              <th>Ações</th>              
+              <th>Reservar</th>              
           </tr>
         </thead>
 
         <tbody>
         @foreach($equipamentos as $equip)
             <tr>
-                <td>{{ $equip->name }}</td>
+                <td class="col s4">{{ $equip->name }}</td>
                 @foreach($tipos as $tipo)
                 	@if($tipo->id == $equip->equip_tipo)
-                		<td>{{ $tipo->name }}</td>
+                		<td class="col s4">{{ $tipo->name }}</td>
                 		@break
                 	@endif
                 @endforeach		
-                <td></td>
+
+                <td class="col s4 centered">
+                    <a href="#"><i class="small material-icons">edit</i></a>        
+                    <a href="{{ route('equipamento.deletar',$equip->id)}}"><i class="small material-icons">delete</i></a>
+                </td>
+                <td>
+                    <a href="#"><i class="small material-icons">event_note</i></a>                    
+                </td>
             </tr>
         @endforeach
         </tbody>
