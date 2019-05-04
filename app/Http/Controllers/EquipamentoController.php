@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Equipamento;
 use App\Tipo;
+use Auth;
 
 class EquipamentoController extends Controller
 {   
@@ -21,8 +22,9 @@ class EquipamentoController extends Controller
     {
         $equipamentos = Equipamento::all();
         $tipos = Tipo::all();
+        $user = Auth::user();
 
-        return view('equipamentos.index',compact('equipamentos','tipos'));
+        return view('equipamentos.index',compact('equipamentos','tipos','user'));
     }
 
     /**
@@ -44,8 +46,13 @@ class EquipamentoController extends Controller
      */
     public function store(Request $request)
     {
-        $equipamento = $request ->all();
-        Equipamento::create($equipamento);
+        
+        $equip = new Equipamento;
+        $equip->name = $request->name;
+        $equip->equip_tipo = $request->equip_tipo;
+        $equip->user_id = Auth::user()->id;
+        $equip->save();
+
         return redirect()->route('equipamento.index');
     }
 
@@ -58,7 +65,9 @@ class EquipamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equip = Equipamento::find($id);
+        $tipos = Tipo::all();
+        return view('equipamentos.editar',compact('equip','tipos'));
     }
 
     /**
@@ -70,7 +79,10 @@ class EquipamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $registro = $request->except(['_token','_method']);
+        $equip = Equipamento::find($id);
+        $equip->update($registro);
+        return redirect()->route('equipamento.index');
     }
 
     /**

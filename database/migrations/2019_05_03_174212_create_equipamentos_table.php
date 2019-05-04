@@ -17,9 +17,12 @@ class CreateEquipamentosTable extends Migration
             $table->Increments('id');
             $table->string('name');
             $table->integer('equip_tipo')->unsigned();
+            $table->integer('user_id')->unsigned();
+            
             $table->timestamps();
 
-            $table->foreign('equip_tipo')->references('id')->on('tipos');
+            $table->foreign('equip_tipo')->references('id')->on('tipos')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

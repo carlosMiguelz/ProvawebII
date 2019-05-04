@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<h3>Cadastro de Equipamentos</h3>
+<h3>Editar equipamento</h3>
 
 <div class="row" style="margin-top: 50px;">
-  <form action="{{route('equipamento.salvar')}}" method="post" class="col s12">
+  <form action="{{route('equipamento.atualizar',$equip->id)}}" method="post" class="col s12">
   @csrf
+    <input type="hidden" name="_method" value="put">
     <div class="row">
       <div class="input-field col s12">
-        <input id="nome" name="name" type="text" class="validate">
+        <input id="nome" name="name" type="text" value="{{$equip->name}}" class="validate">
         <label for="nome">Nome</label>
       </div>
     </div>  
@@ -24,8 +25,7 @@
     </div>
     <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
   </form>
-</div>      
-
+</div> 
 @endsection
 @section('js')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>

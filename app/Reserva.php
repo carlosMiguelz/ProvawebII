@@ -11,7 +11,7 @@ class Reserva extends Model
     protected $fillable = ['inicio_data','fim_data','inicio_horario','fim_horario','equipamento_id','user_id'];
 
     public function equipamento(){
-      return $this->belongsToMany(Equipamento::class);
+      return $this->belongsToMany(Equipamento::class,'id','equipamento_id');
     }
 
     public function user(){

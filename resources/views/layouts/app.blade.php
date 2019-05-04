@@ -4,30 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel = "stylesheet"
-         href = "https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel = "stylesheet"
-         href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-      <script type = "text/javascript"
-         src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
-      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-      </script> 
-      
-      <script>
-         $(document).ready(function() {
-            $('select').material_select();
-         });
-      </script>
+         href = "https://fonts.googleapis.com/icon?family=Material+Icons" >
 
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+               
+    <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet" media="screen,projection">
 </head>
 <body>
     <div class="">
         <nav class="teal">
             <div class="nav-wrapper container">
-              <a href="{{route('equipamento.index')}}" class="brand-logo">SGRE</a>
+              <a href="{{route('home')}}" class="brand-logo">SGRE</a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
                 @guest
+                  <li>
+                    <a href="{{ route('login')}}">Entrar</a>
+                  </li>
                 @else
+                <li>
+                  <a href="{{ route('equipamento.index')}}">Equipamentos</a>
+                </li>
+                <li>
+                  <a href="{{ route('reservas.index')}}">Reservas</a>
+                </li>
                 <li>
                   <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
@@ -47,7 +45,8 @@
     <div id="app" class="container">
         @yield('content')
     </div>
-    <script>@yield('js')</script>
+    
 
+    @yield('js')
 </body>
 </html>

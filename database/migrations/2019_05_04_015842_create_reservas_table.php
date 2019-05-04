@@ -26,7 +26,7 @@ class CreateReservasTable extends Migration
             $table->index(['equipamento_id','user_id']);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('equipamento_id')->references('id')->on('equipamentos');
+            $table->foreign('equipamento_id')->references('id')->on('equipamentos')->onDelete('cascade');
             
 
             $table->timestamps();
